@@ -30,6 +30,7 @@ export default function ChatroomScreen() {
   const [socketUrl] = useState("ws://10.0.5.26:1235/");
   const { sendMessage, lastMessage } = useWebSocket(socketUrl);
   const router = useRouter();
+  let timer;
 
   useEffect(() => {
     sendMessage(
@@ -47,8 +48,6 @@ export default function ChatroomScreen() {
   }, [chatroomUuid]);
 
   useEffect(() => {
-    let timer;
-
     if (!isHelpGiverPresent && !isAssistantPresent) {
       timer = setTimeout(() => {
         console.log("I will request assistant", chatroomUuidRef.current);
@@ -71,7 +70,7 @@ export default function ChatroomScreen() {
             },
           ]
         );
-      }, 5000);
+      }, 15000);
     }
 
     return () => clearTimeout(timer);
@@ -103,6 +102,9 @@ export default function ChatroomScreen() {
 
   const onHelpGiverEntered = () => {
     setIsHelpGiverPresent(true);
+    if (timer != null) {
+      clearTimeout(timer);
+    }
     if (isAssistantPresent) {
       Alert.alert(
         "Alert",
