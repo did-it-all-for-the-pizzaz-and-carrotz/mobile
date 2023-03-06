@@ -120,7 +120,7 @@ export default function ChatroomScreen() {
   };
 
   const onHelpGiverLeft = () => {
-    setIsHelpGiverPresent(true);
+    setIsHelpGiverPresent(false);
   };
 
   const onAssistantEntered = (payload) => {
