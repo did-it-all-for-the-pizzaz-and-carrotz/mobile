@@ -189,12 +189,14 @@ export default function ChatroomScreen() {
             borderBottomWidth: StyleSheet.hairlineWidth,
           }}
         />
-        <TextInput
-          style={styles.textInput}
-          value={message}
-          onChangeText={setMessage}
-          onSubmitEditing={handleOnSubmit}
-        />
+        <View style={styles.textWrapper}>
+          <TextInput
+            style={styles.textInput}
+            value={message}
+            onChangeText={setMessage}
+            onSubmitEditing={handleOnSubmit}
+          />
+        </View>
       </ImageBackground>
     </SafeAreaView>
   );
@@ -258,5 +260,8 @@ const styles = StyleSheet.create({
     margin: 12,
     padding: 10,
     alignSelf: "center",
+  },
+  textWrapper: {
+    backgroundColor: "#6e91f1",
   },
 });
